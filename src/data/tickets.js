@@ -17,7 +17,7 @@ export default [
       // Массив кодов (iata) городов с пересадками
       stops: { id: 5, stop: ['AWE', 'QWEE', 'QWEAS'] },
       // Общее время перелёта в минутах
-      duration: 225,
+      duration: 150,
     },
   },
   {
@@ -38,7 +38,7 @@ export default [
       // Массив кодов (iata) городов с пересадками
       stops: { id: 4, stop: ['AWE', 'QWEE'] },
       // Общее время перелёта в минутах
-      duration: 225,
+      duration: 190,
     },
   },
   {
@@ -59,7 +59,7 @@ export default [
       // Массив кодов (iata) городов с пересадками
       stops: { id: 3, stop: ['AWE'] },
       // Общее время перелёта в минутах
-      duration: 225,
+      duration: 100,
     },
   },
   {
@@ -164,7 +164,7 @@ export default [
       // Массив кодов (iata) городов с пересадками
       stops: { id: 3, stop: ['AWE'] },
       // Общее время перелёта в минутах
-      duration: 225,
+      duration: 140,
     },
   },
   {
@@ -269,7 +269,7 @@ export default [
       // Массив кодов (iata) городов с пересадками
       stops: { id: 3, stop: ['AWE'] },
       // Общее время перелёта в минутах
-      duration: 225,
+      duration: 170,
     },
   },
   {

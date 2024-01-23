@@ -5,26 +5,8 @@
     v-model:ticketsPerList="ticketsPerList"/>
 
     <div class="content__list">
-      <div class="radio-list">
-        <label class="radio-list__label">
-          <input type="radio" class="radio-list__radio" name="price" value="Самый дешевый">
-          <span class="radio-list__custom">
-            Самый дешевый
-          </span>
-        </label>
-        <label class="radio-list__label">
-          <input type="radio" class="radio-list__radio" name="price" value="Самый быстрый">
-          <span class="radio-list__custom">
-            Самый быстрый
-          </span>
-        </label>
-        <label class="radio-list__label">
-          <input type="radio" class="radio-list__radio" name="price" value="Оптимальный">
-          <span class="radio-list__custom">
-            Оптимальный
-          </span>
-        </label>
-      </div>
+      <TicketsFilterTop
+      v-model:filterPriorities="filterPriorities"/>
 
       <TicketsList
       v-model:tickets="ticketsData"/>
@@ -39,6 +21,7 @@
 
 <script>
 import tickets from '@/data/tickets';
+import TicketsFilterTop from '@/components/TicketsFilterTop.vue';
 import TicketsList from '@/components/TicketsList.vue';
 import TicketsFilter from '@/components/TicketsFilter.vue';
 
@@ -46,11 +29,13 @@ export default {
   data() {
     return {
       filterStopsIds: [1],
+      filterPriorities: 0,
       list: 1,
       ticketsPerList: 5,
     };
   },
   components: {
+    TicketsFilterTop,
     TicketsList,
     TicketsFilter,
   },
@@ -77,6 +62,24 @@ export default {
       } else {
         filteredTickets = filteredTickets
           .filter((ticket) => this.filterStopsIds.includes(ticket.segments.stops.id));
+      }
+
+      if (this.filterPriorities === 1) {
+        filteredTickets = filteredTickets
+          .filter((ticket) => ticket.price < 13000)
+          .sort((a, b) => a.price - b.price);
+      }
+
+      if (this.filterPriorities === 2) {
+        filteredTickets = filteredTickets
+          .filter((ticket) => ticket.segments.duration < 200)
+          .sort((a, b) => a.segments.duration - b.segments.duration);
+      }
+
+      if (this.filterPriorities === 3) {
+        filteredTickets = filteredTickets
+          .filter((ticket) => ticket.segments.duration < 200 && ticket.price < 13000)
+          .sort((a, b) => a.price - b.price);
       }
 
       return filteredTickets;
