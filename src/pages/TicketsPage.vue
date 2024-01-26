@@ -1,18 +1,31 @@
 <template>
   <main class="content container">
-    <TicketsFilter
-    v-model:filterStops="filterStopsIds"
-    v-model:ticketsPerList="ticketsPerList"/>
+    <div class="content__filter">
+      <TicketsFilter
+      v-model:filterStopsIds="filterStopsIds"
+      v-model:ticketsFlag="ticketsFlag"
+      v-model:ticketsPerList="ticketsPerList"/>
+
+      <button class="btn-reset-filters"
+      @click.prevent="resetFilters"
+      v-show="filterPriorities > 0 || (filterStopsIds.indexOf(1) && filterStopsIds.length > 0)
+      || (!filterStopsIds.indexOf(1) && filterStopsIds.length > 1)">
+        Сбросить фильтры
+      </button>
+    </div>
 
     <div class="content__list">
       <TicketsFilterTop
-      v-model:filterPriorities="filterPriorities"/>
+      v-model:filterPriorities="filterPriorities"
+      v-model:ticketsFlag="ticketsFlag"
+      v-model:ticketsPerList="ticketsPerList"/>
 
       <TicketsList
       v-model:tickets="ticketsData"/>
 
       <button class="btn-more"
-      @click.prevent="showMore">
+      @click.prevent="showMore"
+      :class="{ 'disabled-btn--active': !this.ticketsFlag }">
         Показать еще 5 билетов!
       </button>
     </div>
@@ -32,6 +45,7 @@ export default {
       filterPriorities: 0,
       list: 1,
       ticketsPerList: 5,
+      ticketsFlag: true,
     };
   },
   components: {
@@ -56,7 +70,7 @@ export default {
     filteredTickets() {
       let filteredTickets = tickets;
 
-      if (this.filterStopsIds.includes(1) && this.filterStopsIds.length === 1) {
+      if (this.filterStopsIds.length === 1 && this.filterStopsIds.includes(1)) {
         filteredTickets = filteredTickets
           .map((ticket) => ticket);
       } else {
@@ -86,9 +100,24 @@ export default {
     },
   },
   methods: {
+    resetFilters() {
+      this.filterStopsIds = [1];
+      this.filterPriorities = 0;
+      this.ticketsPerList = 5;
+      this.ticketsFlag = true;
+    },
+    stopShowing() {
+      if (this.filteredTickets.length === this.ticketsData.length
+        || this.ticketsData.length === 0) {
+        this.ticketsFlag = false;
+      }
+    },
     showMore() {
       this.ticketsPerList += 5;
     },
+  },
+  beforeUpdate() {
+    this.stopShowing();
   },
 };
 </script>
