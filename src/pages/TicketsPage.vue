@@ -57,6 +57,14 @@ export default {
     ticketsData() {
       const offset = (this.list - 1) * this.ticketsPerList;
 
+      if (this.filteredTickets.length <= 2) {
+        document.body.style.overflow = 'hidden';
+        document.body.style.paddingRight += '17px';
+      } else {
+        document.body.style.overflow = null;
+        document.body.style.paddingRight = null;
+      }
+
       return this.filteredTickets ? this.filteredTickets.map((ticket) => {
         return {
           ...ticket,
