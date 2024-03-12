@@ -5,7 +5,7 @@
     </a>
   </header>
 
-  <h1 style="display: none;">Avia</h1>
+  <h1 style="display: none;margin: 0;">Avia</h1>
 
   <router-view :key="$route.fullPath"/>
 
