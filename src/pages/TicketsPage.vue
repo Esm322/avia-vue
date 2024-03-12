@@ -120,9 +120,9 @@ export default {
         this.ticketsFlag = false;
       }
     },
-    showMore() {
-      this.ticketsPerList += 5;
-    },
+    // showMore() {
+    //   this.ticketsPerList += 5;
+    // },
   },
   beforeUpdate() {
     this.stopShowing();
