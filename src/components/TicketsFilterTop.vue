@@ -10,31 +10,33 @@
   </div>
 </template>
 
-<script>
+<script setup>
 import categoryTickets from '@/data/categoryTickets';
+import {
+  ref, computed, defineProps, defineEmits,
+} from 'vue';
 
-export default {
-  data() {
-    return {
-      currentTicketsFlag: true,
-      currentTicketsPerList: 5,
-    };
+const props = defineProps({
+  filterPriorities: Number,
+  ticketsFlag: Boolean,
+  ticketsPerList: Number,
+});
+
+const emit = defineEmits(['update:filterPriorities', 'update:ticketsFlag', 'update:ticketsPerList']);
+
+const currentTicketsFlag = ref(true);
+const currentTicketsPerList = ref(5);
+
+const getCategories = computed(() => categoryTickets);
+
+const currentPriority = computed({
+  get: () => {
+    return props.filterPriorities;
   },
-  props: ['filterPriorities', 'ticketsFlag', 'ticketsPerList'],
-  computed: {
-    getCategories() {
-      return categoryTickets;
-    },
-    currentPriority: {
-      get() {
-        return this.filterPriorities;
-      },
-      set(val) {
-        this.$emit('update:filterPriorities', val);
-        this.$emit('update:ticketsFlag', this.currentTicketsFlag);
-        this.$emit('update:ticketsPerList', this.currentTicketsPerList);
-      },
-    },
+  set: (val) => {
+    emit('update:filterPriorities', val);
+    emit('update:ticketsFlag', currentTicketsFlag.value);
+    emit('update:ticketsPerList', currentTicketsPerList.value);
   },
-};
+});
 </script>

@@ -4,12 +4,12 @@ export default function useFilteredTickets(tickets, filterStopsIds, filterPriori
   const filteredTickets = computed(() => {
     let filtered = tickets;
 
-    if (filterStopsIds.value.length === 1 && filterStopsIds.value.includes(1)) {
+    if (filterStopsIds.stopsIds.length === 1 && filterStopsIds.stopsIds.includes(1)) {
       filtered = filtered
         .map((ticket) => ticket);
     } else {
       filtered = filtered
-        .filter((ticket) => filterStopsIds.value.includes(ticket.segments.stops.id));
+        .filter((ticket) => filterStopsIds.stopsIds.includes(ticket.segments.stops.id));
     }
 
     if (filterPriorities.value === 1) {

@@ -23,31 +23,34 @@
   </aside>
 </template>
 
-<script>
+<script setup>
 import categoryStops from '@/data/categoryStops';
+import {
+  computed, ref, defineProps, defineEmits,
+} from 'vue';
 
-export default {
-  data() {
-    return {
-      currentTicketsFlag: true,
-      currentTicketsPerList: 5,
-    };
+const props = defineProps({
+  filterStopsIds: Array,
+  ticketsFlag: Boolean,
+  ticketsPerList: Number,
+  modelValue: String,
+});
+
+const emit = defineEmits(['update:filterStopsIds', 'update:ticketsFlag', 'update:ticketsPerList']);
+
+const currentTicketsFlag = ref(true);
+const currentTicketsPerList = ref(5);
+
+const filterStopsData = computed(() => categoryStops);
+
+const currentStopsIds = computed({
+  get: () => {
+    return props.filterStopsIds;
   },
-  props: ['filterStopsIds', 'ticketsFlag', 'ticketsPerList'],
-  computed: {
-    filterStopsData() {
-      return categoryStops;
-    },
-    currentStopsIds: {
-      get() {
-        return this.filterStopsIds;
-      },
-      set(val) {
-        this.$emit('update:filterStopsIds', val);
-        this.$emit('update:ticketsFlag', this.currentTicketsFlag);
-        this.$emit('update:ticketsPerList', this.currentTicketsPerList);
-      },
-    },
+  set: (val) => {
+    emit('update:filterStopsIds', val);
+    emit('update:ticketsFlag', currentTicketsFlag.value);
+    emit('update:ticketsPerList', currentTicketsPerList.value);
   },
-};
+});
 </script>
