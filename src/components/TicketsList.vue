@@ -1,19 +1,18 @@
 <template>
   <ul class="tickets-list">
-    <TicketItem v-for="ticket in tickets" :key="ticket.idTicket"
+    <TicketItem v-for="ticket in props.tickets" :key="ticket.idTicket"
+    :id="ticket.idTicket"
     :price="ticket.price"
     :stops="ticket.stops"
     :date="ticket.date"/>
   </ul>
 </template>
 
-<script>
+<script setup lang="ts">
+import { INewTicket } from '@/models/NewTicketModel';
 import TicketItem from './TicketItem.vue';
 
-export default {
-  props: ['tickets'],
-  components: {
-    TicketItem,
-  },
-};
+const props = defineProps<{
+  tickets: INewTicket[],
+}>();
 </script>

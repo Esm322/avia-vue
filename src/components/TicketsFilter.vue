@@ -10,7 +10,6 @@
             <label class="check-list__label">
               <input type="checkbox" class="check-list__check"
               name="transfer" :value="category.id"
-              :checked="1"
               v-model="currentStopsIds">
               <span class="check-list__custom">
                 {{ category.name }}
@@ -23,17 +22,17 @@
   </aside>
 </template>
 
-<script setup>
-import categoryStops from '@/data/categoryStops';
+<script setup lang="ts">
 import {
-  computed, ref, defineProps, defineEmits,
+  computed,
+  ref,
 } from 'vue';
+import categoryStops from '@/data/categoryStops';
 
 const props = defineProps({
   filterStopsIds: Array,
   ticketsFlag: Boolean,
   ticketsPerList: Number,
-  modelValue: String,
 });
 
 const emit = defineEmits(['update:filterStopsIds', 'update:ticketsFlag', 'update:ticketsPerList']);

@@ -1,0 +1,168 @@
+export default [
+  {
+    idTicket: 15,
+    price: 12400,
+    segments: {
+      origin: '',
+      destination: '',
+      date: '10:10-15:30',
+      stops: { id: 5, stop: ['AWE', 'QWEE', 'QWEAS'] },
+      duration: 150,
+    },
+  },
+  {
+    idTicket: 14,
+    price: 9400,
+    segments: {
+      origin: '',
+      destination: '',
+      date: '08:10-12:30',
+      stops: { id: 4, stop: ['AWE', 'QWEE'] },
+      duration: 190,
+    },
+  },
+  {
+    idTicket: 13,
+    price: 15400,
+    segments: {
+      origin: '',
+      destination: '',
+      date: '12:10-17:30',
+      stops: { id: 3, stop: ['AWE'] },
+      duration: 100,
+    },
+  },
+  {
+    idTicket: 12,
+    price: 11400,
+    carrier: '',
+    segments: {
+      origin: '',
+      destination: '',
+      date: '10:10-15:30',
+      stops: { id: 2, stop: [] },
+      duration: 225,
+    },
+  },
+  {
+    idTicket: 11,
+    price: 10400,
+    segments: {
+      origin: '',
+      destination: '',
+      date: '10:10-15:30',
+      stops: { id: 5, stop: ['AWE', 'QWEE', 'QWEAS'] },
+      duration: 225,
+    },
+  },
+  {
+    idTicket: 10,
+    price: 12400,
+    segments: {
+      origin: '',
+      destination: '',
+      date: '10:10-15:30',
+      stops: { id: 5, stop: ['AWE', 'QWEE', 'QWEAS'] },
+      duration: 225,
+    },
+  },
+  {
+    idTicket: 9,
+    price: 9400,
+    segments: {
+      origin: '',
+      destination: '',
+      date: '08:10-12:30',
+      stops: { id: 4, stop: ['AWE', 'QWEE'] },
+      duration: 225,
+    },
+  },
+  {
+    idTicket: 8,
+    price: 15400,
+    segments: {
+      origin: '',
+      destination: '',
+      date: '12:10-17:30',
+      stops: { id: 3, stop: ['AWE'] },
+      duration: 140,
+    },
+  },
+  {
+    idTicket: 7,
+    price: 11400,
+    segments: {
+      origin: '',
+      destination: '',
+      date: '10:10-15:30',
+      stops: { id: 2, stop: [] },
+      duration: 225,
+    },
+  },
+  {
+    idTicket: 6,
+    price: 10400,
+    segments: {
+      origin: '',
+      destination: '',
+      date: '10:10-15:30',
+      stops: { id: 5, stop: ['AWE', 'QWEE', 'QWEAS'] },
+      duration: 225,
+    },
+  },
+  {
+    idTicket: 5,
+    price: 12400,
+    segments: {
+      origin: '',
+      destination: '',
+      date: '10:10-15:30',
+      stops: { id: 5, stop: ['AWE', 'QWEE', 'QWEAS'] },
+      duration: 225,
+    },
+  },
+  {
+    idTicket: 4,
+    price: 9400,
+    segments: {
+      origin: '',
+      destination: '',
+      date: '08:10-12:30',
+      stops: { id: 4, stop: ['AWE', 'QWEE'] },
+      duration: 225,
+    },
+  },
+  {
+    idTicket: 3,
+    price: 15400,
+    segments: {
+      origin: '',
+      destination: '',
+      date: '12:10-17:30',
+      stops: { id: 3, stop: ['AWE'] },
+      duration: 170,
+    },
+  },
+  {
+    idTicket: 2,
+    price: 11400,
+    segments: {
+      origin: '',
+      destination: '',
+      date: '10:10-15:30',
+      stops: { id: 2, stop: [] },
+      duration: 225,
+    },
+  },
+  {
+    idTicket: 1,
+    price: 10400,
+    segments: {
+      origin: '',
+      destination: '',
+      date: '10:10-15:30',
+      stops: { id: 5, stop: ['AWE', 'QWEE', 'QWEAS'] },
+      duration: 225,
+    },
+  },
+];

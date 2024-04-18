@@ -1,7 +1,7 @@
 <template>
   <li class="tickets-list__item ticket">
     <span class="ticket__price">
-      {{ price }} Р
+      {{ props.price }} Р
     </span>
 
     <img src="img/s7.png" alt="company" class="ticket__img">
@@ -15,11 +15,11 @@
     </span>
 
     <span class="ticket__transfers span-text">
-      {{ stops.length !== 0 ? stops.length : '' }} пересадки
+      {{ props.stops.length !== 0 ? props.stops.length : '' }} пересадки
     </span>
 
     <p class="ticket__something-time-text p-text">
-      {{ date }}
+      {{ props.date }}
     </p>
 
     <p class="ticket__time-spending-text p-text">
@@ -28,7 +28,7 @@
 
     <ul style="display: flex;">
       <li class="ticket__transfers-text p-text"
-      v-for="stop in stops" :key="stop">
+      v-for="stop in props.stops" :key="stop">
         {{ stop }}&nbsp;
       </li>
     </ul>
@@ -59,8 +59,12 @@
   </li>
 </template>
 
-<script>
-export default {
-  props: ['price', 'stops', 'date'],
-};
+<script setup lang="ts">
+
+const props = defineProps<{
+  id: number,
+  price: number,
+  stops: string[],
+  date: string,
+}>();
 </script>

@@ -10,11 +10,12 @@
   </div>
 </template>
 
-<script setup>
-import categoryTickets from '@/data/categoryTickets';
+<script setup lang="ts">
 import {
-  ref, computed, defineProps, defineEmits,
+  ref,
+  computed,
 } from 'vue';
+import categoryTickets from '@/data/categoryTickets';
 
 const props = defineProps({
   filterPriorities: Number,

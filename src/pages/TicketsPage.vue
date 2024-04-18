@@ -22,7 +22,7 @@
       v-model:ticketsPerList="ticketsPerList"/>
 
       <TicketsList
-      v-model:tickets="ticketsData"/>
+      :tickets="ticketsData"/>
 
       <button class="btn-more"
       @click.prevent="showMore"
@@ -33,27 +33,38 @@
   </main>
 </template>
 
-<script setup>
-import { onBeforeUpdate, reactive, ref } from 'vue';
+<script setup lang="ts">
+import {
+  onUpdated,
+  reactive,
+  ref,
+} from 'vue';
+import type { Ref } from 'vue';
 import useTicketsData from '@/composables/useTicketsData';
 import useFilteredTickets from '@/composables/useFilteredTickets';
 import tickets from '@/data/tickets';
 import TicketsFilterTop from '@/components/TicketsFilterTop.vue';
 import TicketsList from '@/components/TicketsList.vue';
 import TicketsFilter from '@/components/TicketsFilter.vue';
+import IStops from '@/models/StopsModel';
 
-const filterStopsIds = reactive({ stopsIds: [1] });
-const filterPriorities = ref(0);
-const ticketsPerList = ref(5);
-const ticketsFlag = ref(true);
-const list = 1;
+const filterStopsIds: IStops = reactive({ stopsIds: [1] });
+const filterPriorities: Ref<number> = ref(0);
+const ticketsPerList: Ref<number> = ref(5);
+const ticketsFlag: Ref<boolean> = ref(true);
+const list: Ref<number> = ref(1);
+const offset: Ref<number> = ref((list.value - 1) * ticketsPerList.value);
 
-const { filteredTickets } = useFilteredTickets(tickets, filterStopsIds, filterPriorities);
+const { filteredTickets } = useFilteredTickets(
+  tickets,
+  filterStopsIds,
+  filterPriorities,
+);
 
 const { ticketsData } = useTicketsData(
   filteredTickets,
   ticketsPerList,
-  list,
+  offset,
 );
 
 const showMore = () => ticketsPerList.value += 5;
@@ -72,5 +83,5 @@ const resetFilters = () => {
   ticketsFlag.value = true;
 };
 
-onBeforeUpdate(stopShowing);
+onUpdated(stopShowing);
 </script>

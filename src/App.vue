@@ -1,8 +1,8 @@
 <template>
   <header class="header container">
-    <a href="#" class="header__logo">
-      <img src="img/Logo.svg" alt="Логотип" class="logo">
-    </a>
+    <router-link :to="{ name: 'tickets' }" class="header__logo">
+      <img src="img/Logo.svg" alt="Логотип" class="logo" loading="lazy">
+    </router-link>
   </header>
 
   <h1 style="display: none;margin: 0;">Avia</h1>
